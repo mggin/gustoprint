@@ -24,45 +24,52 @@ import HeaderBar from './parts/header_bar'
 
 // Sample data which will received the data from system
 
+const deviceObj = {name: 'Printer- E Class Mark III', address: '00:17:AC:16:D7:72'}
+
 class Setting extends Component {
   
 
   render() {
     return (
       <View style={{flex: 1}}>
-        <HeaderBar />
+         <HeaderBar  navigate={this.props.navigation.replace} name='Main' img={require('../../assets/images/exit.png')} />
         {/* <Description /> */}
           <View style={{flex: 1, flexDirection: "row"}}>
-          <View style={{flex: 1.5}}>
+          
 
             
-            <ScrollView>
+            {/* <ScrollView showsVerticalScrollIndicator={false}>
               {
-                this.props.connection.devicesObj.map((deviceObj) => 
+                this.props.connection.devicesObj.map((deviceObj) =>  */}
                   <ConnectionBar 
-                    key={deviceObj.name + 97}
+                    //key={deviceObj.name + 97}
                     device={deviceObj}
                     setConnectedDevice={this.props.setConnectedDevice}
-                     />
-                ) 
-              }
-            </ScrollView>
-            </View>
+                    isConnecting={this.props.connection.isConnecting}
+                  />
+                {/* ) 
+              } 
+            </ScrollView> */}
+            
             <View style={{flex: 1}}>
-              <ConnectedBar  device={this.props.connection.connectedDevice} />
+              <ConnectedBar  device={this.props.connection.connectedDevice} isConnected={this.props.connection.isConnected} />
 
             </View>
               
           </View>
           
-          <NavigationBtn navigate={this.props.navigation.replace}/>
-        
+          {/* <NavigationBtn navigate={this.props.navigation.replace}/>
+         */}
       </View>
     );
   }
 }
 
 const ConnectedBar = props => {
+  let connectIcon = require('../../assets/images/connected.png')
+  if (props.isConnected) {
+    connectIcon = require('../../assets/images/connected_green.png')
+  }
   return (
     <View style={connectSty.main}>
       <View style={connectSty.side}> 
@@ -74,7 +81,7 @@ const ConnectedBar = props => {
 
       </View>
       <View style={connectSty.side}>
-        <Image  style={{width: 40,height: 40}} source={require('../../assets/images/connected.png')} />
+        <Image  style={{width: 40,height: 40}} source={connectIcon} />
       </View>
       
     </View>

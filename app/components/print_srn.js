@@ -10,7 +10,8 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux'
 import {
     setPrintQuantity,
-    resetPrintQuantity
+    resetPrintQuantity,
+    reducePrintQuantity
 } from '../../actions/print_act'
 import HeaderBar from './parts/header_bar'
 
@@ -20,22 +21,34 @@ class Print extends Component {
   render() {
     return (
       <View style={{flex: 1}}>
-        <HeaderBar    />
+        <HeaderBar  navigate={this.props.navigation.replace} name='Main' img={require('../../assets/images/exit.png')} />
             <View style={printSty.main}>
-                <View style={[printSty.side, {justifyContent: 'space-around'}]}>
-                    <MenuBox name={this.props.printRedu.currentItem.name} image={this.props.printRedu.currentItem.image} active={true}/>
-                    <NavigationBtn navigate={this.props.navigation.replace} />
+                <View style={printSty.side}>
+                    <MenuBox 
+                        name={this.props.printRedu.currentItem.name} 
+                        image={this.props.printRedu.currentItem.image} 
+                        active={true}/>
+                    {/* <NavigationBtn navigate={this.props.navigation.replace} /> */}
                 </View>
                 <View style={printSty.center}>
                     <KeyPad 
                         value={this.props.printRedu.printQuantity}
                         setPrintQuantity={this.props.setPrintQuantity}
-                        resetPrintQuantity={this.props.resetPrintQuantity}
+                        reducePrintQuantity={this.props.reducePrintQuantity}
                         />
                 </View>
-                <View style={[printSty.side, {paddingTop: 80, justifyContent: 'flex-start'}]}>
-                    <GenerateBtn name={'Print'} image={require('../../assets/images/print_btn.png')} color={print_btn} />
-                    <GenerateBtn name={'Cancel'} image={require('../../assets/images/cancel.png')} color={connection_bar_bg} />
+                <View style={printSty.side}>
+                    <GenerateBtn 
+                        name={'Print'} 
+                        image={require('../../assets/images/print_btn.png')}
+                        color={print_btn} 
+                        amount={this.props.printRedu.printQuantity} 
+                        id='print'
+                        resetPrintQuantity={this.props.resetPrintQuantity} />
+                    <GenerateBtn 
+                        name={'Cancel'} 
+                        image={require('../../assets/images/cancel.png')} 
+                        color={connection_bar_bg} />
                 </View>
             </View>
       </View>
@@ -51,8 +64,9 @@ const printSty = StyleSheet.create({
     },
     side: {
         flex: 1,
-        justifyContent: 'center',
+        justifyContent: 'flex-start',
         alignItems: 'center',
+        paddingTop: 80
         // backgroundColor: 'red'
     },
     center: {
@@ -72,7 +86,8 @@ mapPropsToState = (state) => {
 mapActions = (dispatch) => {
     return bindActionCreators({
         setPrintQuantity,
-        resetPrintQuantity
+        resetPrintQuantity,
+        reducePrintQuantity
     }, dispatch)
 }
 

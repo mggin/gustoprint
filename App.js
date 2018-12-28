@@ -16,6 +16,7 @@ import {
 } from 'react-redux'
 import {
   createStore,
+  applyMiddleware
 } from 'redux'
 import allReducers from './reducers'
 import {
@@ -24,10 +25,18 @@ import {
 import Main from './app/components/main_srn'
 import Print from './app/components/print_srn'
 import Route from './route'
+import thunk from 'redux-thunk'
+import HoneyWell from './NativeModules'
 
-const store = createStore(allReducers)
+const store = createStore(allReducers, applyMiddleware(thunk))
 
 export default class App extends Component {
+
+  componentWillMount() {
+    HoneyWell.decodeImage((val) => {
+      console.log(val)
+    })
+  }
 
 
   render() {

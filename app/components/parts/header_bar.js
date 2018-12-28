@@ -15,12 +15,14 @@ import {
     connected_bg
  } from '../../../constants/colors';
 
+
+
 export default HeaderBar = props => {
     return (
         <View style={headerSty.main}>
         <Text style={headerSty.text}>Gusto Print</Text>
-            <TouchableOpacity style={headerSty.btn} onPress={() => props.navigate('Setting')}>
-                <Image style={headerSty.img} source={require('../../../assets/images/connected_red.png')} />
+            <TouchableOpacity style={headerSty.btn} onPress={() => props.navigate(props.name)}>
+                <Image style={headerSty.img} source={props.img} />
                 
             </TouchableOpacity>
             
@@ -45,7 +47,7 @@ const headerSty = StyleSheet.create({
         height: 60,
         justifyContent: 'center',
         alignItems: 'center',
-        paddingHorizontal: 30,
+        paddingHorizontal: 25,
         paddingVertical: 5,
         marginRight: 10,
     },

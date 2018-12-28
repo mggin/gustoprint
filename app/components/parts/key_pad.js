@@ -21,7 +21,7 @@ import { CABIN_MEDIUM, MYRIAD_REGULAR, RIGHTEOUS } from '../../../constants/font
 const renderKeys = (keyObj, props) => {
     let key = null
     if (keyObj.key == 'DEL') {
-       return ( <TouchableOpacity style={keySty.main} onPress={() => props.resetPrintQuantity()}>
+       return ( <TouchableOpacity style={keySty.main} onPress={() => props.reducePrintQuantity()}>
             <Image style={keySty.image} resizeMode="center" source={keyObj.image} />
         </TouchableOpacity>)
     } else if (keyObj.key == null) {

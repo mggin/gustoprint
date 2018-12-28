@@ -2,6 +2,9 @@ package com.gustoprint;
 
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.os.Environment;
 import android.telecom.Call;
 import android.util.Log;
 
@@ -31,6 +34,7 @@ public class HoneyWellModule extends ReactContextBaseJavaModule {
     ConnectionBase conn;
     DocumentDPL docDPL = new DocumentDPL();
     ParametersDPL paramDPL = new ParametersDPL();
+    List<Bitmap> imageDataList = new ArrayList<Bitmap>();
     public HoneyWellModule(ReactApplicationContext reactContext) {
         super(reactContext);
     }
@@ -80,7 +84,48 @@ public class HoneyWellModule extends ReactContextBaseJavaModule {
         }
         if (!conn.getIsOpen()) {
             conn.open();
-            cb.invoke("Connected");
+            cb.invoke( conn.toString());
         }
+    }
+
+    @ReactMethod
+    public void print(String information, int amount) throws Exception {
+        if (conn.open()) {
+            docDPL.setPrintQuantity(amount);
+            docDPL.writeTextScalable(information, "02", 20, 20);
+            //docDPL.writeBarCode("a", "8900", 200, 200);
+            //docDPL.writeBarCodeGS1DataBar(ParametersDPL.GS1DataBar.UPCA, "12345678901", true, (byte) 2, (byte) 0, (byte) 0, (byte) 1);
+
+            //write normal ASCII Text Scalable
+
+            conn.write(docDPL.getDocumentData());
+
+        }
+    }
+
+    @ReactMethod
+    public  void decodeImage(Callback cb) {
+        String path = Environment.getExternalStorageDirectory().getAbsolutePath() + "/hello.jpg";
+        imageDataList.add(BitmapFactory.decodeFile(path));
+        cb.invoke(imageDataList.toString());
+    }
+
+    @ReactMethod
+    public void printImage(Integer amount) throws Exception {
+        //BitmapFactory.Options options;
+        //String path = Environment.getExternalStorageDirectory().getAbsolutePath() + '/' + menuName + ".jpeg";
+        //options = new BitmapFactory.Options();
+        //cb.invoke(path);
+        //options.inSampleSize = 2;
+        //Bitmap imageData = BitmapFactory.decodeFile(path);
+        docDPL.writeImage(imageDataList.get(0), 0, 0, paramDPL);
+        docDPL.setPrintQuantity(amount);
+        conn.write(docDPL.getDocumentData());
+    }
+
+    @ReactMethod
+    public void cancelPrinting(Callback cb) {
+        conn.clearWriteBuffer();
+        cb.invoke(conn.read());
     }
 }

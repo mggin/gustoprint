@@ -35,6 +35,8 @@ class Main extends Component {
         HoneyWell.getPairedDevices(devices => {
             this.props.getPairedDevices(devices)
         })
+        //HoneyWell.printImage('hello')
+        //HoneyWell.decodeImage()
     }
     
 
@@ -56,10 +58,18 @@ _renderItem = ({item}) => {
   
 
   render() {
+    let naviIcon = require('../../assets/images/connected_red.png')
+    if (this.props.connection.isConnected) {
+        naviIcon = require('../../assets/images/connected_green.png')
+    }
 
     return (
       <View style={{flex: 1}}>
-      <HeaderBar navigate={this.props.navigation.replace}/>
+      <HeaderBar 
+        navigate={this.props.navigation.replace} 
+        name='Setting'
+        img={naviIcon}
+         />
         <FlatList
        // style={{flex: 1}}
             data={MenuItems}
@@ -76,7 +86,9 @@ _renderItem = ({item}) => {
 
 
 mapProps = (state) => {
-    return state
+    return {
+        connection: state.connection_redu
+    }
 }
 
 mapActions = (dispatch) => {

@@ -2,7 +2,8 @@ import {
     View,
     Text,
     StyleSheet,
-    TouchableOpacity
+    TouchableOpacity,
+    ActivityIndicator
 } from 'react-native'
 import React, { Component } from 'react'
 import { 
@@ -13,27 +14,40 @@ import {
 import {
     CABIN_MEDIUM
 } from '../../../constants/fonts'
-
+import HoneyWell from '../../../NativeModules'
 
 
 TouchableOpacity.defaultProps = {
     activeOpacity: 0.7
 }
 
+const connectDevice = (setConnectedDevice, deviceObj) => {
+    setConnectedDevice(deviceObj)
+    // HoneyWell.connectToPrinter(deviceObj.address, (info) => {
+    //     console.log(info)
+    // })
+}
+
 export default ConnectionBar = (props) => {
+ let connectedBtn = 
+    <TouchableOpacity style={styles.connect_btn} onPress={() => connectDevice(props.setConnectedDevice, props.device)}>
+         <Text style={styles.connect_text}>Connect</Text>
+    </TouchableOpacity> 
+ if (props.isConnecting) {
+     connectedBtn = <ActivityIndicator size="large" color={connection_text} />
+ } 
   return (
       <View style={styles.main}>
-          <View style={styles.boxes}>
+          <View style={styles.box_1}>
             <Text style={styles.textSty}>{props.device.name}</Text>
-          </View>
-          <View style={styles.boxes}>
+          {/* </View> */}
+          {/* <View style={styles.boxes}> */}
             <Text style={styles.textSty}>{props.device.address}</Text>
           </View>
-          <View style={styles.boxes}>
-            <TouchableOpacity style={styles.connect_btn} onPress={() => props.setConnectedDevice(props.device)}>
-                <Text style={styles.connect_text}>Connect</Text>
-
-            </TouchableOpacity>
+          <View style={styles.box_2}>
+            {
+                connectedBtn
+            }
           </View>
       </View>
   )
@@ -51,11 +65,16 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         margin: 5
     },
-    boxes: {
+    box_1: {
         flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center'
+        marginLeft: 50,
+        //justifyContent: 'center',
+        //alignItems: 'center',
+        //backgroundColor: 'blue'
 
+    },
+    box_2: {
+        marginRight: 40,
     },
     textSty: {
         fontFamily: CABIN_MEDIUM,

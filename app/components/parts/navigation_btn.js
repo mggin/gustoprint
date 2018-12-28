@@ -9,13 +9,13 @@ import {
 import {
     connection_connect_btn
 } from '../../../constants/colors'
-import { Actions } from 'react-native-router-flux';
+
 
 export default NavigationBtn = props => {
     return ( 
         <View style={styles.main} >
             <TouchableOpacity style={styles.touch_area} onPress={() => props.navigate('Main')}>
-                <Image resizeMode="center" source={require('../../../assets/images/back_btn.png')}/>       
+                <Image resizeMode="center" source={require('../../../assets/images/exit.png')}/>       
             </TouchableOpacity>   
         </View>
     )

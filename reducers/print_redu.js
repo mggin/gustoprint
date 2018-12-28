@@ -1,6 +1,7 @@
 import {
     SET_PRINT_QUANTITY,
     RESET_PRINT_QUANTITY,
+    REDUCE_PRINT_QUANTITY,
     SET_CURRENT_ITEM
 } from '../constants/action_type'
 const initState = { 
@@ -14,14 +15,23 @@ export default function(state = initState, action) {
     switch(action.type) {
         case SET_PRINT_QUANTITY:
             //console.log("call")
+            if (state.printQuantity.length > 9) {
+                return state
+            } else {
+                return {
+                    ...state,
+                    printQuantity: state.printQuantity + action.key
+                }
+            }
+        case REDUCE_PRINT_QUANTITY:
             return {
                 ...state,
-                printQuantity: state.printQuantity + action.key
+                printQuantity: state.printQuantity.slice(0, -1)
             }
         case RESET_PRINT_QUANTITY:
             return {
                 ...state,
-                printQuantity: state.printQuantity.slice(0, -1)
+                printQuantity: ''
             }
         case SET_CURRENT_ITEM: 
             //console.log(action.itemObj)
