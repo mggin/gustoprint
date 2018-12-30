@@ -4,7 +4,8 @@ import {
     Text,
     TouchableOpacity,
     StyleSheet,
-    Image
+    Image,
+    AsyncStorage
  } from 'react-native';
  import {
      KAUSHAN_SCRIPT
@@ -17,7 +18,10 @@ import {
 
 
 
+
+
 export default HeaderBar = props => {
+    //getDeviceAddressFromAsync()
     return (
         <View style={headerSty.main}>
         <Text style={headerSty.text}>Gusto Print</Text>

@@ -43,12 +43,12 @@ class Print extends Component {
                         image={require('../../assets/images/print_btn.png')}
                         color={print_btn} 
                         amount={this.props.printRedu.printQuantity} 
-                        id='print'
+                        //id='print'
                         resetPrintQuantity={this.props.resetPrintQuantity} />
-                    <GenerateBtn 
+                    {/* <GenerateBtn 
                         name={'Cancel'} 
                         image={require('../../assets/images/cancel.png')} 
-                        color={connection_bar_bg} />
+                        color={connection_bar_bg} /> */}
                 </View>
             </View>
       </View>

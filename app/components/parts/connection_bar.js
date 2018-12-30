@@ -3,7 +3,8 @@ import {
     Text,
     StyleSheet,
     TouchableOpacity,
-    ActivityIndicator
+    ActivityIndicator,
+    AsyncStorage
 } from 'react-native'
 import React, { Component } from 'react'
 import { 
@@ -21,16 +22,36 @@ TouchableOpacity.defaultProps = {
     activeOpacity: 0.7
 }
 
-const connectDevice = (setConnectedDevice, deviceObj) => {
-    setConnectedDevice(deviceObj)
-    // HoneyWell.connectToPrinter(deviceObj.address, (info) => {
-    //     console.log(info)
-    // })
+const connectDevice = (setConnectedDevice, deviceObj, isConnected) => {
+    let connectDevicePromise = new Promise((resolve, reject) => {
+        setConnectedDevice(deviceObj) 
+        if (true) {
+            resolve()
+        }
+    })
+    connectDevicePromise.then(() => {
+        setDeviceAddressToAsync(deviceObj)
+        //console.log('setDeviceAddressToAsync')
+    })
+    
 }
+
+
+const setDeviceAddressToAsync = async (deviceObj) => {
+    try {
+       const deviceProperties = [['@deviceName', deviceObj.name], ['@deviceAddress', deviceObj.address]]
+       await AsyncStorage.multiSet(deviceProperties)
+       console.log('setDevice')
+    } catch(error) {
+        console.log('setDeviceAddressToAsync is error')
+    }
+} 
 
 export default ConnectionBar = (props) => {
  let connectedBtn = 
-    <TouchableOpacity style={styles.connect_btn} onPress={() => connectDevice(props.setConnectedDevice, props.device)}>
+    <TouchableOpacity 
+        style={styles.connect_btn} 
+        onPress={() => connectDevice(props.setConnectedDevice, props.device, props.isConnected)}>
          <Text style={styles.connect_text}>Connect</Text>
     </TouchableOpacity> 
  if (props.isConnecting) {

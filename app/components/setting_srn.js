@@ -46,6 +46,7 @@ class Setting extends Component {
                     device={deviceObj}
                     setConnectedDevice={this.props.setConnectedDevice}
                     isConnecting={this.props.connection.isConnecting}
+                    isConnected={this.props.connection.isConnected}
                   />
                 {/* ) 
               } 

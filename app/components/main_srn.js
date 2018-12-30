@@ -6,7 +6,8 @@ import {
      Image,
      StyleSheet,
      Dimensions,
-     TouchableOpacity
+     TouchableOpacity,
+     AsyncStorage,
 } from 'react-native';
 import {
     connection_bar_bg, connection_text, connected_bg, descript_bg
@@ -19,25 +20,56 @@ import { bindActionCreators } from 'redux'
 import {
     printSome,
     setCurrentItem,
-    resetPrintQuantity
+    resetPrintQuantity,
+    //setConnectedDevice
 } from '../../actions/print_act'
 import {
-    getPairedDevices
+    getPairedDevices,
+    setConnectedDevice
 } from '../../actions/connetion_act'
 import HoneyWell from '../../NativeModules'
 import HeaderBar from './parts/header_bar'
 
+const getDeviceAddressFromAsync = async (setConnectedDevice, isConnected) => {
+    try {
+       const keys = ['@deviceName', '@deviceAddress']
+       AsyncStorage.multiGet(keys)
+           .then((valList) => {
+               console.log(valList)
+               if (valList.every(val => val[1] !== null && !isConnected)) {
+                   let deviceObj = {name: valList[0][1], address: valList[1][1]}
+                   setConnectedDevice(deviceObj)
+               } else {
+                   console.log('object is null')
+               }
+           })
+    } catch(error) {
+        //console.log()
+    }
+}
 
 
+const setDeviceAddressToAsync = async (deviceObj) => {
+    try {
+       const deviceProperties = [['@deviceName', deviceObj.name], ['@deviceAddress', deviceObj.address]]
+       await AsyncStorage.multiSet(deviceProperties)
+       console.log('setDevice')
+    } catch(error) {
+        console.log('setDeviceAddressToAsync is error')
+    }
+} 
 class Main extends Component {
 
-    componentDidMount() {
-        HoneyWell.getPairedDevices(devices => {
-            this.props.getPairedDevices(devices)
-        })
-        //HoneyWell.printImage('hello')
-        //HoneyWell.decodeImage()
+    componentWillMount() {
+        // HoneyWell.getPairedDevices(devices => {
+        //     this.props.getPairedDevices(devices)
+        // })
+        setDeviceAddressToAsync({name: 'Printer- E Class Mark III', address: '00:17:AC:16:D7:72'})
+       // getDeviceAddressFromAsync(this.props.setConnectedDevice)
     }
+    componentDidMount() {
+        getDeviceAddressFromAsync(this.props.setConnectedDevice, this.props.connection.isConnected)  
+      }
     
 
 _renderItem = ({item}) => {
@@ -59,6 +91,7 @@ _renderItem = ({item}) => {
 
   render() {
     let naviIcon = require('../../assets/images/connected_red.png')
+    //getDeviceAddressFromAsync(this.props.setConnectedDevice)
     if (this.props.connection.isConnected) {
         naviIcon = require('../../assets/images/connected_green.png')
     }
@@ -94,7 +127,9 @@ mapProps = (state) => {
 mapActions = (dispatch) => {
     return bindActionCreators({   
         setCurrentItem,
-        getPairedDevices
+        getPairedDevices,
+        setConnectedDevice
+
     }, dispatch)
 }
 
