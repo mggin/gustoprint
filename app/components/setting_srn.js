@@ -17,7 +17,8 @@ import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { 
   getPairedDevices,
-  setConnectedDevice
+  setConnectedDevice,
+  closeConnection
 } from '../../actions/connetion_act'
 import  NavigationBtn from './parts/navigation_btn'
 import HeaderBar from './parts/header_bar'
@@ -25,6 +26,7 @@ import HeaderBar from './parts/header_bar'
 // Sample data which will received the data from system
 
 const deviceObj = {name: 'Printer- E Class Mark III', address: '00:17:AC:16:D7:72'}
+const deviceObj1 = {name: 'Printer- E ', address: '00:17:AC:16:D7:72'}
 
 class Setting extends Component {
   
@@ -41,13 +43,17 @@ class Setting extends Component {
             {/* <ScrollView showsVerticalScrollIndicator={false}>
               {
                 this.props.connection.devicesObj.map((deviceObj) =>  */}
+              
                   <ConnectionBar 
                     //key={deviceObj.name + 97}
                     device={deviceObj}
                     setConnectedDevice={this.props.setConnectedDevice}
+                    closeConnection={this.props.closeConnection}
                     isConnecting={this.props.connection.isConnecting}
                     isConnected={this.props.connection.isConnected}
                   />
+                
+                 
                 {/* ) 
               } 
             </ScrollView> */}
@@ -156,7 +162,8 @@ mapStateToProps = state => {
 mapDisptachToprops = dispatch => {
   return bindActionCreators({
     getPairedDevices,
-    setConnectedDevice
+    setConnectedDevice,
+    closeConnection
   }, dispatch)
 }
 

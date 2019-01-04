@@ -18,16 +18,21 @@ import {
 import HoneyWell from '../../../NativeModules'
 
 
+
 TouchableOpacity.defaultProps = {
     activeOpacity: 0.7
 }
 
-const connectDevice = (setConnectedDevice, deviceObj, isConnected) => {
-    let connectDevicePromise = new Promise((resolve, reject) => {
-        setConnectedDevice(deviceObj) 
-        if (true) {
-            resolve()
+const connectDevice = (setConnectedDevice, closeConnection, deviceObj, isConnected) => {
+    //const args = 'arguments'
+    let connectDevicePromise = new Promise((resolve, reject,) => {
+        console.log({isConnected})
+        if (isConnected) {
+            closeConnection()
+            console.log({isConnected})
         }
+        setConnectedDevice(deviceObj)
+        resolve()
     })
     connectDevicePromise.then(() => {
         setDeviceAddressToAsync(deviceObj)
@@ -51,7 +56,7 @@ export default ConnectionBar = (props) => {
  let connectedBtn = 
     <TouchableOpacity 
         style={styles.connect_btn} 
-        onPress={() => connectDevice(props.setConnectedDevice, props.device, props.isConnected)}>
+        onPress={() => connectDevice(props.setConnectedDevice, props.closeConnection, props.device, props.isConnected)}>
          <Text style={styles.connect_text}>Connect</Text>
     </TouchableOpacity> 
  if (props.isConnecting) {

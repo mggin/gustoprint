@@ -9,6 +9,7 @@ import android.telecom.Call;
 import android.util.Log;
 
 import com.facebook.react.bridge.Callback;
+import com.facebook.react.bridge.Promise;
 import com.facebook.react.bridge.ReactApplicationContext;
 import com.facebook.react.bridge.ReactContextBaseJavaModule;
 import com.facebook.react.bridge.ReactMethod;
@@ -21,6 +22,8 @@ import com.facebook.react.bridge.WritableMap;
 import com.facebook.react.bridge.WritableNativeArray;
 import com.facebook.react.bridge.WritableNativeMap;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
@@ -35,6 +38,9 @@ public class HoneyWellModule extends ReactContextBaseJavaModule {
     DocumentDPL docDPL = new DocumentDPL();
     ParametersDPL paramDPL = new ParametersDPL();
     List<Bitmap> imageDataList = new ArrayList<Bitmap>();
+    List<String> stringList = new ArrayList<String>();
+    Bitmap image;
+    String text;
     public HoneyWellModule(ReactApplicationContext reactContext) {
         super(reactContext);
     }
@@ -92,7 +98,7 @@ public class HoneyWellModule extends ReactContextBaseJavaModule {
     public void print(String information, int amount) throws Exception {
         if (conn.open()) {
             docDPL.setPrintQuantity(amount);
-            docDPL.writeTextScalable(information, "02", 20, 20);
+            docDPL.writeTextScalable(information, "00", 20, 20);
             //docDPL.writeBarCode("a", "8900", 200, 200);
             //docDPL.writeBarCodeGS1DataBar(ParametersDPL.GS1DataBar.UPCA, "12345678901", true, (byte) 2, (byte) 0, (byte) 0, (byte) 1);
 
@@ -104,23 +110,32 @@ public class HoneyWellModule extends ReactContextBaseJavaModule {
     }
 
     @ReactMethod
-    public  void decodeImage(Callback cb) {
-        String path = Environment.getExternalStorageDirectory().getAbsolutePath() + "/hello.jpg";
-        imageDataList.add(BitmapFactory.decodeFile(path));
-        cb.invoke(imageDataList.toString());
+    public  void decodeImage(String path, Callback cb) throws IOException {
+        // String path = Environment.getExternalStorageDirectory().getCanonicalPath();
+//        String path = Environment.getExternalStorageDirectory().getAbsolutePath() + "/hello.jpg";
+
+        //imageDataList.add(BitmapFactory.decodeFile(path));
+        //stringList.add(path);
+        //cb.invoke(stringList.toString());
+        //image = BitmapFactory.decodeFile(path);
+        text = path;
+        cb.invoke(path);
     }
 
     @ReactMethod
-    public void printImage(Integer amount) throws Exception {
+    public void printImage(Integer amount, Integer index, Callback cb) throws Exception {
         //BitmapFactory.Options options;
         //String path = Environment.getExternalStorageDirectory().getAbsolutePath() + '/' + menuName + ".jpeg";
         //options = new BitmapFactory.Options();
         //cb.invoke(path);
         //options.inSampleSize = 2;
         //Bitmap imageData = BitmapFactory.decodeFile(path);
-        docDPL.writeImage(imageDataList.get(0), 0, 0, paramDPL);
-        docDPL.setPrintQuantity(amount);
+        //docDPL.writeImage(imageDataList.get(index), 200, 100, paramDPL);
+        //String text = stringList.get(index);
+        docDPL.writeTextScalable(text, "00", 450, 100);
+        //docDPL.setPrintQuantity(amount);
         conn.write(docDPL.getDocumentData());
+        //cb.invoke(text);
     }
 
     @ReactMethod
@@ -128,4 +143,26 @@ public class HoneyWellModule extends ReactContextBaseJavaModule {
         conn.clearWriteBuffer();
         cb.invoke(conn.read());
     }
+
+    @ReactMethod
+    public boolean isOpen() {
+        return conn.getIsActive();
+    }
+
+    @ReactMethod
+    public void closeConnection(Callback cb) {
+        conn.close();
+        cb.invoke("Connection is closed successfully");
+    }
+
+//    @ReactMethod
+//    public void moveAssets(Callback cb) {
+//        String path = Environment.getExternalStorageDirectory().toString();
+//        String gustoFolder = "gustoprint";
+//        File gusto = new File(path, gustoFolder);
+//        if (!gusto.exists()) {
+//            gusto.mkdirs();
+//        }
+//
+//    }
 }

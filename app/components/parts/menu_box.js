@@ -17,6 +17,7 @@ import {
 } from '../../../constants/fonts'
 
 const navigate = (setItem, item, navigator ) => {
+    console.log({item})
     setItem(item)
     navigator('Print')
 }

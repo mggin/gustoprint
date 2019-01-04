@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
-import { View, Text } from 'react-native';
+import { View, Text, PermissionsAndroid } from 'react-native';
 import Main from './app/components/main_srn'
 import Setting from './app/components/setting_srn'
 import Print from './app/components/print_srn'
 import Camera from './app/components/camera'
+import HoneyWell from './NativeModules'
 
 import { createAppContainer, createStackNavigator } from 'react-navigation'
 
@@ -43,11 +44,20 @@ async function requestStoragePermission() {
   }
 
 
-export default class componentName extends Component {
+export default class Route extends Component {
   
-    componentDidMount() {
-        requestStoragePermission()
-    }
+  componentDidMount() {
+    requestStoragePermission()
+        // console.log('Route run')
+  }
+
+  componentWillUnmount() {
+    console.log('hello')
+    HoneyWell.closeConnection((msg) => {
+      console.log({msg})
+    })
+  }
+
 
   render() {
     // console.log('hello')

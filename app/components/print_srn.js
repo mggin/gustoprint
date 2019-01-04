@@ -11,12 +11,49 @@ import { bindActionCreators } from 'redux'
 import {
     setPrintQuantity,
     resetPrintQuantity,
-    reducePrintQuantity
+    reducePrintQuantity,
+    renameImage,
+    pushLabelObj
 } from '../../actions/print_act'
 import HeaderBar from './parts/header_bar'
+import HoneyWell from '../../NativeModules'
+import { LABEL_IMAGES_PATH } from '../../constants/action_type';
+
+
+
 
 
 class Print extends Component {
+
+  componentWillMount() {
+    // let labelIdList = this.props.printRedu.labelCheckList.map(label => label.id)
+    // let labelCheckList = this.props.printRedu.labelCheckList
+
+    let filePath = renameImage(this.props.printRedu.currentItem.name)
+    HoneyWell.decodeImage(filePath, (MSG) => {
+        console.log({MSG})
+        // resolve()
+    })
+
+    // check the image to make sure it's decode,
+    // if (!labelIdList.includes(this.props.printRedu.currentItem.id)) {
+    //     let DecodeImage = new Promise((resolve, reject) => {
+    //         let filePath = LABEL_IMAGES_PATH + renameImage(this.props.printRedu.currentItem.name)
+    //         HoneyWell.decodeImage(filePath, (MSG) => {
+    //             console.log({MSG})
+    //             resolve()
+    //         })
+    //     })
+    //     DecodeImage
+    //         .then(() => {
+    //             let labelCheckObj = {id: this.props.printRedu.currentItem.id, labelCheckId: this.props.printRedu.counter}
+    //             this.props.pushLabelObj(labelCheckObj)
+    //         })
+        
+    // }
+    // let labelCheckList = this.props.printRedu.labelCheckList
+    // console.log({labelCheckList})
+  }
   
   render() {
     return (
@@ -44,6 +81,8 @@ class Print extends Component {
                         color={print_btn} 
                         amount={this.props.printRedu.printQuantity} 
                         //id='print'
+                        id={this.props.printRedu.currentItem.id}
+                        labelCheckList={this.props.printRedu.labelCheckList}
                         resetPrintQuantity={this.props.resetPrintQuantity} />
                     {/* <GenerateBtn 
                         name={'Cancel'} 
@@ -87,7 +126,8 @@ mapActions = (dispatch) => {
     return bindActionCreators({
         setPrintQuantity,
         resetPrintQuantity,
-        reducePrintQuantity
+        reducePrintQuantity,
+        pushLabelObj
     }, dispatch)
 }
 

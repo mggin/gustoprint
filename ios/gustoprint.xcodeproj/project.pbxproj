@@ -43,6 +43,27 @@
 		968B52FE4A484F02BB3A2B6B /* kaushan_script_regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = DDF053D139C14302B088FCDC /* kaushan_script_regular.ttf */; };
 		75C1BB3878094932BA2F9AF5 /* righteous_regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CCCED07362454F2CBCDDF717 /* righteous_regular.ttf */; };
 		08C975E08C3F41898ADE36A6 /* libRNGestureHandler.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AD4136D7BB214571A0491F7D /* libRNGestureHandler.a */; };
+		CF50FCE48B0E42CC91DF0F09 /* libRNImagePicker.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3C69ABB854BC4F6CA1223A20 /* libRNImagePicker.a */; };
+		8372CB374DE44679B0C8D1A6 /* back_btn.png in Resources */ = {isa = PBXBuildFile; fileRef = 5236573D7BE6427FBC7C4883 /* back_btn.png */; };
+		00E4CC214228411F9D5EB3A9 /* cancel.png in Resources */ = {isa = PBXBuildFile; fileRef = 030F39D61CAC4DDDBB173F09 /* cancel.png */; };
+		0DEC4A5CDA604A1D8B504B21 /* connected_green.png in Resources */ = {isa = PBXBuildFile; fileRef = A68B7E79E3DC47429ACC9F2F /* connected_green.png */; };
+		90D48D9957EB477186C98B53 /* connected_red.png in Resources */ = {isa = PBXBuildFile; fileRef = 7FB6BD3CE3F54086BC914CF0 /* connected_red.png */; };
+		347C644AF7CE4119A2E46D06 /* connected.png in Resources */ = {isa = PBXBuildFile; fileRef = F15C47729E8C4C7CA6F2B56C /* connected.png */; };
+		8AF70B13E5E5465E9E4E1A8A /* delete_shield.png in Resources */ = {isa = PBXBuildFile; fileRef = 6FB0C4B63D2C47F5B24EE436 /* delete_shield.png */; };
+		0DD807981C6D402392CC69CC /* exit.png in Resources */ = {isa = PBXBuildFile; fileRef = FBDA4D426B174A7BA80179DF /* exit.png */; };
+		19C37FF42E3E4C40BB01A8FF /* california_roll.png in Resources */ = {isa = PBXBuildFile; fileRef = 69F24CF4CD064E2CB640B383 /* california_roll.png */; };
+		AC16802C3A0E4C849F4AA74F /* crispy_savory_roll.png in Resources */ = {isa = PBXBuildFile; fileRef = F6441A1040A24A24B5C5D4D2 /* crispy_savory_roll.png */; };
+		B9B98CD7D8F9480FA6AFDD60 /* philidelphia_roll.png in Resources */ = {isa = PBXBuildFile; fileRef = F109D0073EEF4A8C96A76E3B /* philidelphia_roll.png */; };
+		C462512698AE422E9B93BE5B /* real_crab_meat_roll.png in Resources */ = {isa = PBXBuildFile; fileRef = 40886BA8B7074F538209EDFF /* real_crab_meat_roll.png */; };
+		D2CBB2D88B144D469FD8192D /* red_wolf_roll.png in Resources */ = {isa = PBXBuildFile; fileRef = D0774C7C30204870961A3CA6 /* red_wolf_roll.png */; };
+		FBA07617E3EE41D78E4ACB5C /* spicy_tuna_roll.png in Resources */ = {isa = PBXBuildFile; fileRef = E283BBCAE9464E41B8F8BF2F /* spicy_tuna_roll.png */; };
+		DAD1C5AD7F494634BA74CA1E /* spider_roll.png in Resources */ = {isa = PBXBuildFile; fileRef = 64C7BE84091E4044B7AF7A1A /* spider_roll.png */; };
+		702864826256406EA52E5DF1 /* tempura_shrimp_roll.png in Resources */ = {isa = PBXBuildFile; fileRef = 8981126E02D04D198AC17F94 /* tempura_shrimp_roll.png */; };
+		C6C4B1724E6D47BBAFC821A7 /* print_btn.png in Resources */ = {isa = PBXBuildFile; fileRef = BD07FEDAFB6E45A28F316F36 /* print_btn.png */; };
+		19219556E21F4F41A92844E1 /* print.png in Resources */ = {isa = PBXBuildFile; fileRef = FC5E012B01DA478AB30CE054 /* print.png */; };
+		19DE386FD4F041919F7A55FF /* radio.svg in Resources */ = {isa = PBXBuildFile; fileRef = EE0C98DA77D04CDDB5CDF6B5 /* radio.svg */; };
+		D8D02C2BC44042F1B0F7E596 /* cancel.png in Resources */ = {isa = PBXBuildFile; fileRef = 45B5BDD9D3CD48CAB8A16386 /* cancel.png */; };
+		A427F8ECD78F450E9A2AB917 /* libRNFS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A80B42E0441346EF9E66334A /* libRNFS.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -355,6 +376,29 @@
 		CCCED07362454F2CBCDDF717 /* righteous_regular.ttf */ = {isa = PBXFileReference; name = "righteous_regular.ttf"; path = "../assets/fonts/righteous_regular.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 		E2600285DF2847989C6DC100 /* RNGestureHandler.xcodeproj */ = {isa = PBXFileReference; name = "RNGestureHandler.xcodeproj"; path = "../node_modules/react-native-gesture-handler/ios/RNGestureHandler.xcodeproj"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.pb-project; explicitFileType = undefined; includeInIndex = 0; };
 		AD4136D7BB214571A0491F7D /* libRNGestureHandler.a */ = {isa = PBXFileReference; name = "libRNGestureHandler.a"; path = "libRNGestureHandler.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
+		395085D77D2A4E408F68AADB /* RNImagePicker.xcodeproj */ = {isa = PBXFileReference; name = "RNImagePicker.xcodeproj"; path = "../node_modules/react-native-image-picker/ios/RNImagePicker.xcodeproj"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.pb-project; explicitFileType = undefined; includeInIndex = 0; };
+		3C69ABB854BC4F6CA1223A20 /* libRNImagePicker.a */ = {isa = PBXFileReference; name = "libRNImagePicker.a"; path = "libRNImagePicker.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
+		5236573D7BE6427FBC7C4883 /* back_btn.png */ = {isa = PBXFileReference; name = "back_btn.png"; path = "../assets/images/back_btn.png"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		030F39D61CAC4DDDBB173F09 /* cancel.png */ = {isa = PBXFileReference; name = "cancel.png"; path = "../assets/images/cancel.png"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		A68B7E79E3DC47429ACC9F2F /* connected_green.png */ = {isa = PBXFileReference; name = "connected_green.png"; path = "../assets/images/connected_green.png"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		7FB6BD3CE3F54086BC914CF0 /* connected_red.png */ = {isa = PBXFileReference; name = "connected_red.png"; path = "../assets/images/connected_red.png"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		F15C47729E8C4C7CA6F2B56C /* connected.png */ = {isa = PBXFileReference; name = "connected.png"; path = "../assets/images/connected.png"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		6FB0C4B63D2C47F5B24EE436 /* delete_shield.png */ = {isa = PBXFileReference; name = "delete_shield.png"; path = "../assets/images/delete_shield.png"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		FBDA4D426B174A7BA80179DF /* exit.png */ = {isa = PBXFileReference; name = "exit.png"; path = "../assets/images/exit.png"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		69F24CF4CD064E2CB640B383 /* california_roll.png */ = {isa = PBXFileReference; name = "california_roll.png"; path = "../assets/images/menu_images/california_roll.png"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		F6441A1040A24A24B5C5D4D2 /* crispy_savory_roll.png */ = {isa = PBXFileReference; name = "crispy_savory_roll.png"; path = "../assets/images/menu_images/crispy_savory_roll.png"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		F109D0073EEF4A8C96A76E3B /* philidelphia_roll.png */ = {isa = PBXFileReference; name = "philidelphia_roll.png"; path = "../assets/images/menu_images/philidelphia_roll.png"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		40886BA8B7074F538209EDFF /* real_crab_meat_roll.png */ = {isa = PBXFileReference; name = "real_crab_meat_roll.png"; path = "../assets/images/menu_images/real_crab_meat_roll.png"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		D0774C7C30204870961A3CA6 /* red_wolf_roll.png */ = {isa = PBXFileReference; name = "red_wolf_roll.png"; path = "../assets/images/menu_images/red_wolf_roll.png"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		E283BBCAE9464E41B8F8BF2F /* spicy_tuna_roll.png */ = {isa = PBXFileReference; name = "spicy_tuna_roll.png"; path = "../assets/images/menu_images/spicy_tuna_roll.png"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		64C7BE84091E4044B7AF7A1A /* spider_roll.png */ = {isa = PBXFileReference; name = "spider_roll.png"; path = "../assets/images/menu_images/spider_roll.png"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		8981126E02D04D198AC17F94 /* tempura_shrimp_roll.png */ = {isa = PBXFileReference; name = "tempura_shrimp_roll.png"; path = "../assets/images/menu_images/tempura_shrimp_roll.png"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		BD07FEDAFB6E45A28F316F36 /* print_btn.png */ = {isa = PBXFileReference; name = "print_btn.png"; path = "../assets/images/print_btn.png"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		FC5E012B01DA478AB30CE054 /* print.png */ = {isa = PBXFileReference; name = "print.png"; path = "../assets/images/print.png"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		EE0C98DA77D04CDDB5CDF6B5 /* radio.svg */ = {isa = PBXFileReference; name = "radio.svg"; path = "../assets/images/radio.svg"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		45B5BDD9D3CD48CAB8A16386 /* cancel.png */ = {isa = PBXFileReference; name = "cancel.png"; path = "../assets/fonts/cancel.png"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		77B7CC941C9341F5A26D05E9 /* RNFS.xcodeproj */ = {isa = PBXFileReference; name = "RNFS.xcodeproj"; path = "../node_modules/react-native-fs/RNFS.xcodeproj"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.pb-project; explicitFileType = undefined; includeInIndex = 0; };
+		A80B42E0441346EF9E66334A /* libRNFS.a */ = {isa = PBXFileReference; name = "libRNFS.a"; path = "libRNFS.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -383,6 +427,8 @@
 				00C302EA1ABCBA2D00DB3ED1 /* libRCTVibration.a in Frameworks */,
 				139FDEF61B0652A700C62182 /* libRCTWebSocket.a in Frameworks */,
 				08C975E08C3F41898ADE36A6 /* libRNGestureHandler.a in Frameworks */,
+				CF50FCE48B0E42CC91DF0F09 /* libRNImagePicker.a in Frameworks */,
+				A427F8ECD78F450E9A2AB917 /* libRNFS.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -570,6 +616,8 @@
 				00C302DF1ABCB9EE00DB3ED1 /* RCTVibration.xcodeproj */,
 				139FDEE61B06529A00C62182 /* RCTWebSocket.xcodeproj */,
 				E2600285DF2847989C6DC100 /* RNGestureHandler.xcodeproj */,
+				395085D77D2A4E408F68AADB /* RNImagePicker.xcodeproj */,
+				77B7CC941C9341F5A26D05E9 /* RNFS.xcodeproj */,
 			);
 			name = Libraries;
 			sourceTree = "<group>";
@@ -626,6 +674,25 @@
 				CFB08C26E52347029D0050E3 /* myriad_pro_regular.ttf */,
 				DDF053D139C14302B088FCDC /* kaushan_script_regular.ttf */,
 				CCCED07362454F2CBCDDF717 /* righteous_regular.ttf */,
+				5236573D7BE6427FBC7C4883 /* back_btn.png */,
+				030F39D61CAC4DDDBB173F09 /* cancel.png */,
+				A68B7E79E3DC47429ACC9F2F /* connected_green.png */,
+				7FB6BD3CE3F54086BC914CF0 /* connected_red.png */,
+				F15C47729E8C4C7CA6F2B56C /* connected.png */,
+				6FB0C4B63D2C47F5B24EE436 /* delete_shield.png */,
+				FBDA4D426B174A7BA80179DF /* exit.png */,
+				69F24CF4CD064E2CB640B383 /* california_roll.png */,
+				F6441A1040A24A24B5C5D4D2 /* crispy_savory_roll.png */,
+				F109D0073EEF4A8C96A76E3B /* philidelphia_roll.png */,
+				40886BA8B7074F538209EDFF /* real_crab_meat_roll.png */,
+				D0774C7C30204870961A3CA6 /* red_wolf_roll.png */,
+				E283BBCAE9464E41B8F8BF2F /* spicy_tuna_roll.png */,
+				64C7BE84091E4044B7AF7A1A /* spider_roll.png */,
+				8981126E02D04D198AC17F94 /* tempura_shrimp_roll.png */,
+				BD07FEDAFB6E45A28F316F36 /* print_btn.png */,
+				FC5E012B01DA478AB30CE054 /* print.png */,
+				EE0C98DA77D04CDDB5CDF6B5 /* radio.svg */,
+				45B5BDD9D3CD48CAB8A16386 /* cancel.png */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -1082,6 +1149,25 @@
 				2F7FC2C62B0B4C79944CB7B4 /* myriad_pro_regular.ttf in Resources */,
 				968B52FE4A484F02BB3A2B6B /* kaushan_script_regular.ttf in Resources */,
 				75C1BB3878094932BA2F9AF5 /* righteous_regular.ttf in Resources */,
+				8372CB374DE44679B0C8D1A6 /* back_btn.png in Resources */,
+				00E4CC214228411F9D5EB3A9 /* cancel.png in Resources */,
+				0DEC4A5CDA604A1D8B504B21 /* connected_green.png in Resources */,
+				90D48D9957EB477186C98B53 /* connected_red.png in Resources */,
+				347C644AF7CE4119A2E46D06 /* connected.png in Resources */,
+				8AF70B13E5E5465E9E4E1A8A /* delete_shield.png in Resources */,
+				0DD807981C6D402392CC69CC /* exit.png in Resources */,
+				19C37FF42E3E4C40BB01A8FF /* california_roll.png in Resources */,
+				AC16802C3A0E4C849F4AA74F /* crispy_savory_roll.png in Resources */,
+				B9B98CD7D8F9480FA6AFDD60 /* philidelphia_roll.png in Resources */,
+				C462512698AE422E9B93BE5B /* real_crab_meat_roll.png in Resources */,
+				D2CBB2D88B144D469FD8192D /* red_wolf_roll.png in Resources */,
+				FBA07617E3EE41D78E4ACB5C /* spicy_tuna_roll.png in Resources */,
+				DAD1C5AD7F494634BA74CA1E /* spider_roll.png in Resources */,
+				702864826256406EA52E5DF1 /* tempura_shrimp_roll.png in Resources */,
+				C6C4B1724E6D47BBAFC821A7 /* print_btn.png in Resources */,
+				19219556E21F4F41A92844E1 /* print.png in Resources */,
+				19DE386FD4F041919F7A55FF /* radio.svg in Resources */,
+				D8D02C2BC44042F1B0F7E596 /* cancel.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1217,10 +1303,14 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)/../node_modules/react-native-gesture-handler/ios/**",
+					"$(SRCROOT)/../node_modules/react-native-image-picker/ios",
+					"$(SRCROOT)/../node_modules/react-native-fs/**",
 				);
 			};
 			name = Debug;
@@ -1243,10 +1333,14 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)/../node_modules/react-native-gesture-handler/ios/**",
+					"$(SRCROOT)/../node_modules/react-native-image-picker/ios",
+					"$(SRCROOT)/../node_modules/react-native-fs/**",
 				);
 			};
 			name = Release;
@@ -1270,6 +1364,8 @@
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)/../node_modules/react-native-gesture-handler/ios/**",
+					"$(SRCROOT)/../node_modules/react-native-image-picker/ios",
+					"$(SRCROOT)/../node_modules/react-native-fs/**",
 				);
 			};
 			name = Debug;
@@ -1292,6 +1388,8 @@
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)/../node_modules/react-native-gesture-handler/ios/**",
+					"$(SRCROOT)/../node_modules/react-native-image-picker/ios",
+					"$(SRCROOT)/../node_modules/react-native-fs/**",
 				);
 			};
 			name = Release;
@@ -1322,10 +1420,14 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)/../node_modules/react-native-gesture-handler/ios/**",
+					"$(SRCROOT)/../node_modules/react-native-image-picker/ios",
+					"$(SRCROOT)/../node_modules/react-native-fs/**",
 				);
 			};
 			name = Debug;
@@ -1356,10 +1458,14 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)/../node_modules/react-native-gesture-handler/ios/**",
+					"$(SRCROOT)/../node_modules/react-native-image-picker/ios",
+					"$(SRCROOT)/../node_modules/react-native-fs/**",
 				);
 			};
 			name = Release;
@@ -1389,10 +1495,14 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)/../node_modules/react-native-gesture-handler/ios/**",
+					"$(SRCROOT)/../node_modules/react-native-image-picker/ios",
+					"$(SRCROOT)/../node_modules/react-native-fs/**",
 				);
 			};
 			name = Debug;
@@ -1422,10 +1532,14 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)/../node_modules/react-native-gesture-handler/ios/**",
+					"$(SRCROOT)/../node_modules/react-native-image-picker/ios",
+					"$(SRCROOT)/../node_modules/react-native-fs/**",
 				);
 			};
 			name = Release;

@@ -1,5 +1,5 @@
 import {
-    GET_PAIRED_DEVICES, SET_CONNECTED_DEVICE, SET_CONNECTING_INDICATOR
+    GET_PAIRED_DEVICES, SET_CONNECTED_DEVICE, SET_CONNECTING_INDICATOR,RESET_CONNECTION
 } from '../constants/action_type'
 const initState = { 
     devicesObj: [],
@@ -30,6 +30,12 @@ export default function(state = initState, action) {
                 isConnecting: false,
                 isConnected: true,
                 connectedDevice: action.connectedDevice
+            }
+        case RESET_CONNECTION: 
+            return {
+                ...state,
+                isConnected: false,
+                isConnecting: false
             }
         default:
             return state
