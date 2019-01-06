@@ -15,6 +15,10 @@ import  {
 import {
     MYRIAD_REGULAR
 } from '../../../constants/fonts'
+import {
+    MENU_HEIGHT,
+    MENU_WIDTH
+} from '../../../constants/layout'
 
 const navigate = (setItem, item, navigator ) => {
     console.log({item})
@@ -26,7 +30,7 @@ export default MenuBox = (props) => {
     //const [name, image] = props.item
     return (
         <TouchableOpacity activeOpacity={0.9} 
-            style={menuSty.main} 
+            style={[menuSty.main, {margin: props.margin}]} 
             disabled={props.active}
             onPress={() => navigate(props.setCurrentItem, props.item, props.navi )}>
                 <View style={{flex: 4, justifyContent: 'center'}}>
@@ -42,9 +46,8 @@ export default MenuBox = (props) => {
 const menuSty = StyleSheet.create({
     main: {
         backgroundColor: connection_bar_bg,
-        margin: 10,
-        width: Dimensions.get('window').width / 4 - 20,
-        height: 280,
+        width: MENU_WIDTH,
+        height: MENU_HEIGHT,
         borderRadius: 10,
         justifyContent: 'center',
         alignItems: 'center'

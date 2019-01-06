@@ -10,6 +10,7 @@ import {
  } from 'react-native';
 import { connection_bar_bg, connected_bg, descript_bg, connection_text, input_bg } from '../../../constants/colors';
 import { CABIN_MEDIUM, MYRIAD_REGULAR, RIGHTEOUS } from '../../../constants/fonts';
+import { red } from 'ansi-colors';
 
  const keys = [ {"key": 1}, {"key": 2},
                 {"key": 3}, {"key": 4},
@@ -88,9 +89,12 @@ const renderKeys = (keyObj, props) => {
          backgroundColor: input_bg,
          //flex: 1,
          borderRadius: 5,
-         width: 280,
+         borderColor: 'transparent',
+         borderWidth: 0.5,
+         width: 290,
          height: 70,
          margin: 5,
+         marginBottom: 20,
          justifyContent: 'center',
          alignItems: 'flex-end'
      },

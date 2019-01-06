@@ -36,10 +36,7 @@ class Setting extends Component {
       <View style={{flex: 1}}>
          <HeaderBar  navigate={this.props.navigation.replace} name='Main' img={require('../../assets/images/exit.png')} />
         {/* <Description /> */}
-          <View style={{flex: 1, flexDirection: "row"}}>
-          
-
-            
+          <View style={{flex: 1, flexDirection: "row"}}>   
             {/* <ScrollView showsVerticalScrollIndicator={false}>
               {
                 this.props.connection.devicesObj.map((deviceObj) =>  */}
@@ -52,8 +49,6 @@ class Setting extends Component {
                     isConnecting={this.props.connection.isConnecting}
                     isConnected={this.props.connection.isConnected}
                   />
-                
-                 
                 {/* ) 
               } 
             </ScrollView> */}

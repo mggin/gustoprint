@@ -1,11 +1,10 @@
 import React, { Component } from 'react';
-import { View, Text, StyleSheet} from 'react-native';
+import { View, Text, StyleSheet, AlertAndroid, Dimensions} from 'react-native';
 import MenuBox from './parts/menu_box'
 import Navi from './parts/navigation_btn'
 import KeyPad from './parts/key_pad'
 import  GenerateBtn  from './parts/generate_btns';
 import { print_btn, connection_bar_bg } from '../../constants/colors';
-import NavigationBtn from './parts/navigation_btn';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux'
 import {
@@ -18,22 +17,32 @@ import {
 import HeaderBar from './parts/header_bar'
 import HoneyWell from '../../NativeModules'
 import { LABEL_IMAGES_PATH } from '../../constants/action_type';
+import { ScrollView } from 'react-native-gesture-handler';
 
 
 
 
 
 class Print extends Component {
+   
+
+  state = {
+      flexDirection: 'row',
+      isColumn: false,
+
+  }
 
   componentWillMount() {
+      this.props.resetPrintQuantity()
+      this.onLayoutChanged()
     // let labelIdList = this.props.printRedu.labelCheckList.map(label => label.id)
     // let labelCheckList = this.props.printRedu.labelCheckList
-
-    let filePath = renameImage(this.props.printRedu.currentItem.name)
-    HoneyWell.decodeImage(filePath, (MSG) => {
-        console.log({MSG})
-        // resolve()
-    })
+    // LABEL_IMAGES_PATH
+    //     let filePath = LABEL_IMAGES_PATH + renameImage(this.props.printRedu.currentItem.name)
+    //     HoneyWell.decodeImage(filePath, (MSG) => {
+    //         console.log({MSG})
+    //         // resolve()
+    //     })
 
     // check the image to make sure it's decode,
     // if (!labelIdList.includes(this.props.printRedu.currentItem.id)) {
@@ -54,18 +63,32 @@ class Print extends Component {
     // let labelCheckList = this.props.printRedu.labelCheckList
     // console.log({labelCheckList})
   }
+
+  onLayoutChanged = () => {
+    let deviceWidth = Dimensions.get("window").width
+    console.log({deviceWidth})
+    if (deviceWidth <= 800) {
+        this.setState({flexDirection: 'column', isColumn: true})
+    } else {
+        this.setState({flexDirection: 'row', isColumn: false})
+    }
+  }
   
   render() {
     return (
-      <View style={{flex: 1}}>
+      <View style={{flex: 1}} onLayout={this.onLayoutChanged}>
         <HeaderBar  navigate={this.props.navigation.replace} name='Main' img={require('../../assets/images/exit.png')} />
-            <View style={printSty.main}>
+        <ScrollView showsVerticalScrollIndicator={false} style={{flex: 1}}>
+            <View style={[printSty.main, {flexDirection: this.state.flexDirection}]}>
                 <View style={printSty.side}>
-                    <MenuBox 
+                    {
+                        !this.state.isColumn ? 
+                        <MenuBox 
                         name={this.props.printRedu.currentItem.name} 
                         image={this.props.printRedu.currentItem.image} 
-                        active={true}/>
-                    {/* <NavigationBtn navigate={this.props.navigation.replace} /> */}
+                        active={true}/> : null
+                    }
+                
                 </View>
                 <View style={printSty.center}>
                     <KeyPad 
@@ -80,7 +103,8 @@ class Print extends Component {
                         image={require('../../assets/images/print_btn.png')}
                         color={print_btn} 
                         amount={this.props.printRedu.printQuantity} 
-                        //id='print'
+                        isConnected={this.props.connection.isConnected}
+                        filePath={LABEL_IMAGES_PATH + renameImage(this.props.printRedu.currentItem.name)}
                         id={this.props.printRedu.currentItem.id}
                         labelCheckList={this.props.printRedu.labelCheckList}
                         resetPrintQuantity={this.props.resetPrintQuantity} />
@@ -90,6 +114,7 @@ class Print extends Component {
                         color={connection_bar_bg} /> */}
                 </View>
             </View>
+            </ScrollView>
       </View>
     );
   }
@@ -99,17 +124,17 @@ class Print extends Component {
 const printSty = StyleSheet.create({
     main: {
         flex: 1,
-        flexDirection: 'row',
+        justifyContent: 'space-evenly',
+       
     },
     side: {
-        flex: 1,
+        //flex: 1,
         justifyContent: 'flex-start',
         alignItems: 'center',
-        paddingTop: 80
-        // backgroundColor: 'red'
+        paddingTop: 80,
     },
     center: {
-        flex: 1.5,
+        //flex: 1.5,
         justifyContent: 'center',
         alignItems: 'center',
         paddingTop: 80,
@@ -118,7 +143,8 @@ const printSty = StyleSheet.create({
 
 mapPropsToState = (state) => {
     return {
-        printRedu: state.print_redu
+        printRedu: state.print_redu,
+        connection: state.connection_redu
     }
 }
 

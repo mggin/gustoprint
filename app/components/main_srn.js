@@ -29,6 +29,7 @@ import {
 } from '../../actions/connetion_act'
 import HoneyWell from '../../NativeModules'
 import HeaderBar from './parts/header_bar'
+import { MENU_WIDTH } from '../../constants/layout';
 
 const getDeviceAddressFromAsync = async (setConnectedDevice, isConnected) => {
     //console.log('getDeviceAddressFromAsync runs')
@@ -61,9 +62,15 @@ const setDeviceAddressToAsync = async (deviceObj) => {
 } 
 class Main extends Component {
 
+    state = {
+        numColumns: 4,
+        margin: 0
+    }
+
     componentWillMount() {
         setDeviceAddressToAsync({name: 'Printer- E Class Mark III', address: '00:17:AC:16:D7:72'})
        // getDeviceAddressFromAsync(this.props.setConnectedDevice)
+       this.onLayoutChanged()
     }
     componentDidMount() {
         getDeviceAddressFromAsync(this.props.setConnectedDevice, this.props.connection.isConnected)  
@@ -80,39 +87,65 @@ class Main extends Component {
                 setCurrentItem={this.props.setCurrentItem}
                 item={item}
                 navi={this.props.navigation.replace}
+                margin={this.state.margin}
                 active={false} />
         )
 
+    }
+
+    // calculate the exact margin for menu box
+    calculateMargin = (deviceWidth, numColumns) => {
+        let margin = ((deviceWidth - (MENU_WIDTH * numColumns) ) / numColumns) / 2.5
+        console.log({margin})
+        this.setState({
+            numColumns,
+            margin
+        })
+    }
+
+
+    // this function change the number of Columns for Flatlist according to the Device width
+    onLayoutChanged = () => {
+        let deviceWidth = Dimensions.get("window").width
+        if (deviceWidth <= 300) {
+            this.calculateMargin(deviceWidth, 1)
+        } else if (deviceWidth <= 500) {
+            this.calculateMargin(deviceWidth, 2)
+        } else if (deviceWidth <= 800) {
+            this.calculateMargin(deviceWidth, 3)
+        } else {
+            this.calculateMargin(deviceWidth, 4)
+        }  
     }
   
 
     render() {
         let naviIcon = require('../../assets/images/connected_red.png')
-        //getDeviceAddressFromAsync(this.props.setConnectedDevice)
         if (this.props.connection.isConnected) {
             naviIcon = require('../../assets/images/connected_green.png')
         }
 
         return (
-        <View style={{flex: 1}}>
+        <View style={{flex: 1}} onLayout={this.onLayoutChanged}>
         <HeaderBar 
             navigate={this.props.navigation.replace} 
             name='Setting'
             img={naviIcon}
             />
+            <View style={{flex: 1, alignItems: 'center'}}>
             <FlatList
-        // style={{flex: 1}}
+                showsVerticalScrollIndicator={false}
                 data={MenuItems}
                 renderItem={this._renderItem}
-                numColumns={4}
+                key={this.state.numColumns}
+                numColumns={this.state.numColumns}
                 keyExtractor={(item) => item.name + 97}
             />
+            </View>
         </View>
         );
     }
 }
-
-
 
 
 mapProps = (state) => {

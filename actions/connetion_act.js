@@ -20,10 +20,10 @@ export const closeConnection = () => {
     return dispatch => {
         dispatch({type: SET_CONNECTING_INDICATOR})
         setTimeout(() => {
-            HoneyWell.closeConnection((msg) => {
+            // HoneyWell.closeConnection((msg) => {
                 dispatch({type: RESET_CONNECTION})
                 console.log(msg)
-            })
+            // })
         }, 1000)
     }
 }
@@ -33,9 +33,9 @@ export const setConnectedDevice = (connectedDevice) =>  {
     return dispatch => {
         dispatch({type: SET_CONNECTING_INDICATOR})
         setTimeout(() => {
-            HoneyWell.connectToPrinter(connectedDevice.address, (conn) => {
+            // HoneyWell.connectToPrinter(connectedDevice.address, (conn) => {
                 dispatch({type: SET_CONNECTED_DEVICE, connectedDevice})
-            })
+            // })
         }, 1000)
         
     }

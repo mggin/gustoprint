@@ -16,7 +16,7 @@ export const setPrintQuantity = (key) => {
 export const renameImage = (name) => {
     let regex = / /gi
     // console.log({name})
-    return name.toLowerCase().replace(regex, '_') + ".png"
+    return name.toLowerCase().replace(regex, '_') + ".jpg"
 }
 
 export const reducePrintQuantity = () => {

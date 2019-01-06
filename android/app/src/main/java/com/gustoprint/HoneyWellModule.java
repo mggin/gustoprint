@@ -96,17 +96,17 @@ public class HoneyWellModule extends ReactContextBaseJavaModule {
 
     @ReactMethod
     public void print(String information, int amount) throws Exception {
-        if (conn.open()) {
-            docDPL.setPrintQuantity(amount);
-            docDPL.writeTextScalable(information, "00", 20, 20);
-            //docDPL.writeBarCode("a", "8900", 200, 200);
-            //docDPL.writeBarCodeGS1DataBar(ParametersDPL.GS1DataBar.UPCA, "12345678901", true, (byte) 2, (byte) 0, (byte) 0, (byte) 1);
-
-            //write normal ASCII Text Scalable
-
-            conn.write(docDPL.getDocumentData());
-
-        }
+//        if (conn.open()) {
+//            docDPL.setPrintQuantity(amount);
+//            docDPL.writeTextScalable(information, "00", 20, 20);
+//            //docDPL.writeBarCode("a", "8900", 200, 200);
+//            //docDPL.writeBarCodeGS1DataBar(ParametersDPL.GS1DataBar.UPCA, "12345678901", true, (byte) 2, (byte) 0, (byte) 0, (byte) 1);
+//
+//            //write normal ASCII Text Scalable
+//
+//            conn.write(docDPL.getDocumentData());
+//
+//        }
     }
 
     @ReactMethod
@@ -123,16 +123,17 @@ public class HoneyWellModule extends ReactContextBaseJavaModule {
     }
 
     @ReactMethod
-    public void printImage(Integer amount, Integer index, Callback cb) throws Exception {
+    public void printImage(String path, Integer amount, Integer index, Callback cb) throws Exception {
         //BitmapFactory.Options options;
         //String path = Environment.getExternalStorageDirectory().getAbsolutePath() + '/' + menuName + ".jpeg";
         //options = new BitmapFactory.Options();
         //cb.invoke(path);
         //options.inSampleSize = 2;
-        //Bitmap imageData = BitmapFactory.decodeFile(path);
+        Bitmap imageData = BitmapFactory.decodeFile(path);
         //docDPL.writeImage(imageDataList.get(index), 200, 100, paramDPL);
         //String text = stringList.get(index);
-        docDPL.writeTextScalable(text, "00", 450, 100);
+        //docDPL.writeText("hello world", "00", 450, 100);
+        docDPL.writeImage(imageData, 0, 0,  paramDPL);
         //docDPL.setPrintQuantity(amount);
         conn.write(docDPL.getDocumentData());
         //cb.invoke(text);
