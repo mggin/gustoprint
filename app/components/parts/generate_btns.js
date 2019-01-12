@@ -15,7 +15,7 @@ import { connection_text } from '../../../constants/colors';
 import HoneyWell from '../../../NativeModules'
 
 const dataWrite = (amount, isConnected, reset, filePath) => {
-    if (!amount) {
+    if (false) {
         Alert.alert(
             'Gusto Print', 
             'Please enter the Sushi quantity!!',
@@ -24,7 +24,7 @@ const dataWrite = (amount, isConnected, reset, filePath) => {
             ],
             { cancelable: false }
         )
-    } else if (!isConnected) {
+    } else if (false) {
         Alert.alert(
             'Gusto Print', 
             `Device couldn't find the Printer!!!`,
@@ -36,10 +36,10 @@ const dataWrite = (amount, isConnected, reset, filePath) => {
     } else {
         reset()
         //console.log({id})
-        // HoneyWell
-        //     .printImage(filePath, parseInt(amount), 1, (printedText) => {
-        //         console.log({printedText})
-        //     })
+        HoneyWell
+            .printImage(filePath, parseInt(amount), 1, (printedText) => {
+                console.log({printedText})
+            })
         // labelCheckList.map((label) => {
         //     if (label.id == id) {
         //         let labelCheckId = parseInt(label.labelCheckId)

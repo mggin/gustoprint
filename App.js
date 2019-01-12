@@ -50,12 +50,12 @@ export default class App extends Component {
         } else {
           RNFS.exists(LABEL_IMAGES_FOLDER_PATH)
             .then((isFolderExist) => {
-              // console.log({isFolderExist})
+              console.log({isFolderExist})
               if (isFolderExist) {
             
                 menuItems.map(label => {
                   let fileName = renameImage(label.name)
-                  // console.log({fileName})
+                  console.log({fileName})
                   let desPath = LABEL_IMAGES_PATH + fileName
                   let filePath = 'images/' + fileName
                   RNFS.existsAssets(filePath)

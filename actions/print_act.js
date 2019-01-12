@@ -3,7 +3,7 @@ import {
     RESET_PRINT_QUANTITY,
     REDUCE_PRINT_QUANTITY,
     SET_CURRENT_ITEM,
-    PUSH_LABEL_OBJ
+    PUSH_LABEL_INDEX
 } from '../constants/action_type'
 
 export const setPrintQuantity = (key) => {
@@ -16,7 +16,7 @@ export const setPrintQuantity = (key) => {
 export const renameImage = (name) => {
     let regex = / /gi
     // console.log({name})
-    return name.toLowerCase().replace(regex, '_') + ".jpg"
+    return name.toLowerCase().replace(regex, '_') + ".png"
 }
 
 export const reducePrintQuantity = () => {
@@ -39,10 +39,10 @@ export const setCurrentItem = (itemObj) => {
     }
 }
 
-export const pushLabelObj = (labelObj) => {
+export const pushLabelObj = (labelID) => {
     return {
-        type: PUSH_LABEL_OBJ,
-        labelObj
+        type: PUSH_LABEL_INDEX,
+        labelID
     }
 }
 

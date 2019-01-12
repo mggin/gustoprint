@@ -107,7 +107,7 @@ class Main extends Component {
     // this function change the number of Columns for Flatlist according to the Device width
     onLayoutChanged = () => {
         let deviceWidth = Dimensions.get("window").width
-        if (deviceWidth <= 300) {
+        if (deviceWidth <= 400) {
             this.calculateMargin(deviceWidth, 1)
         } else if (deviceWidth <= 500) {
             this.calculateMargin(deviceWidth, 2)

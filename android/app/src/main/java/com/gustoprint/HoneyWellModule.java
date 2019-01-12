@@ -25,6 +25,7 @@ import com.facebook.react.bridge.WritableNativeMap;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Set;
 
@@ -35,12 +36,12 @@ import honeywell.printer.ParametersDPL;
 
 public class HoneyWellModule extends ReactContextBaseJavaModule {
     ConnectionBase conn;
+    Bitmap imageData;
     DocumentDPL docDPL = new DocumentDPL();
     ParametersDPL paramDPL = new ParametersDPL();
-    List<Bitmap> imageDataList = new ArrayList<Bitmap>();
-    List<String> stringList = new ArrayList<String>();
-    Bitmap image;
-    String text;
+    HashMap bitHashMap = new HashMap<>();
+    byte[] printData = {0};
+    private int m_printHeadWidth = 384;
     public HoneyWellModule(ReactApplicationContext reactContext) {
         super(reactContext);
     }
@@ -95,48 +96,43 @@ public class HoneyWellModule extends ReactContextBaseJavaModule {
     }
 
     @ReactMethod
-    public void print(String information, int amount) throws Exception {
-//        if (conn.open()) {
-//            docDPL.setPrintQuantity(amount);
-//            docDPL.writeTextScalable(information, "00", 20, 20);
-//            //docDPL.writeBarCode("a", "8900", 200, 200);
-//            //docDPL.writeBarCodeGS1DataBar(ParametersDPL.GS1DataBar.UPCA, "12345678901", true, (byte) 2, (byte) 0, (byte) 0, (byte) 1);
-//
-//            //write normal ASCII Text Scalable
-//
-//            conn.write(docDPL.getDocumentData());
-//
-//        }
-    }
-
-    @ReactMethod
-    public  void decodeImage(String path, Callback cb) throws IOException {
-        // String path = Environment.getExternalStorageDirectory().getCanonicalPath();
-//        String path = Environment.getExternalStorageDirectory().getAbsolutePath() + "/hello.jpg";
-
-        //imageDataList.add(BitmapFactory.decodeFile(path));
-        //stringList.add(path);
-        //cb.invoke(stringList.toString());
-        //image = BitmapFactory.decodeFile(path);
-        text = path;
+    public  void decodeImage(String path, Integer index, Callback cb) throws IOException {
+        //String path = Environment.getExternalStorageDirectory().getCanonicalPath();
+        //String path = Environment.getExternalStorageDirectory().getAbsolutePath() + "/hello.jpg";
+        bitHashMap.put(index, BitmapFactory.decodeFile(path));
         cb.invoke(path);
     }
 
     @ReactMethod
-    public void printImage(String path, Integer amount, Integer index, Callback cb) throws Exception {
-        //BitmapFactory.Options options;
-        //String path = Environment.getExternalStorageDirectory().getAbsolutePath() + '/' + menuName + ".jpeg";
-        //options = new BitmapFactory.Options();
-        //cb.invoke(path);
-        //options.inSampleSize = 2;
-        Bitmap imageData = BitmapFactory.decodeFile(path);
+    public void printImage(Integer amount, Integer index, Callback cb) throws Exception {
+        docDPL = new DocumentDPL();
+        //BitmapFactory.Options option = BitmapFactory.
         //docDPL.writeImage(imageDataList.get(index), 200, 100, paramDPL);
         //String text = stringList.get(index);
         //docDPL.writeText("hello world", "00", 450, 100);
-        docDPL.writeImage(imageData, 0, 0,  paramDPL);
+        docDPL.writeImage((Bitmap)bitHashMap.get(index), 0, 0,  paramDPL);
+        printData = docDPL.getDocumentData();
         //docDPL.setPrintQuantity(amount);
-        conn.write(docDPL.getDocumentData());
-        //cb.invoke(text);
+        //conn.write(docDPL.getDocumentData())
+        conn.write(printData);
+        conn.close();
+
+//        int bytesWritten = 0;
+//        int bytesToWrite = 1024;
+//        int totalBytes = printData.length;
+//        int remainingBytes = totalBytes;
+//        while (bytesWritten < totalBytes)
+//        {
+//            if (remainingBytes < bytesToWrite)
+//                bytesToWrite = remainingBytes;
+//
+//            //Send data, 1024 bytes at a time until all data sent
+//            conn.write(printData, bytesWritten, bytesToWrite);
+//            bytesWritten += bytesToWrite;
+//            remainingBytes = remainingBytes - bytesToWrite;
+//            //Thread.sleep(100);
+//        }
+
     }
 
     @ReactMethod

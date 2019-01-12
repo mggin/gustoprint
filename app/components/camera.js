@@ -63,12 +63,12 @@ export default class Camera extends Component {
         const dest = RNFS.DocumentDirectoryPath+ "/roll.png"
         RNFS.copyFileAssets('images/california_roll.png', dest )
           .then((msg) => {
-            //console.log(msg)
+            console.log(msg)
           })
 
         RNFS.readDir(RNFS.DocumentDirectoryPath) 
           .then((info) => {
-            //console.log({info})
+            console.log({info})
           })
         
     }
