@@ -3,7 +3,7 @@ import {
     RESET_PRINT_QUANTITY,
     REDUCE_PRINT_QUANTITY,
     SET_CURRENT_ITEM,
-    PUSH_LABEL_INDEX
+    PUSH_LABEL_ID
 } from '../constants/action_type'
 
 export const setPrintQuantity = (key) => {
@@ -39,9 +39,9 @@ export const setCurrentItem = (itemObj) => {
     }
 }
 
-export const pushLabelObj = (labelID) => {
+export const pushLabelID = (labelID) => {
     return {
-        type: PUSH_LABEL_INDEX,
+        type: PUSH_LABEL_ID,
         labelID
     }
 }

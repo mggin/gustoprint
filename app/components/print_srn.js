@@ -12,7 +12,7 @@ import {
     resetPrintQuantity,
     reducePrintQuantity,
     renameImage,
-    pushLabelObj
+    pushLabelID
 } from '../../actions/print_act'
 import HeaderBar from './parts/header_bar'
 import HoneyWell from '../../NativeModules'
@@ -33,38 +33,36 @@ class Print extends Component {
   }
 
   componentWillMount() {
-      this.props.resetPrintQuantity()
-      this.onLayoutChanged()
-    // let labelIdList = this.props.printRedu.labelCheckList.map(label => label.id)
-    // let labelCheckList = this.props.printRedu.labelCheckList
-    // LABEL_IMAGES_PATH
-    //     let filePath = LABEL_IMAGES_PATH + renameImage(this.props.printRedu.currentItem.name)
-    //     HoneyWell.decodeImage(filePath, (MSG) => {
-    //         console.log({MSG})
-    //         // resolve()
-    //     })
+    this.props.resetPrintQuantity()
+    this.onLayoutChanged()
+    //let labelIdList = this.props.printRedu.labelCheckList.map(label => label.id)
+    let labelCheckList = this.props.printRedu.labelCheckList
 
-    // check the image to make sure it's decode,
-    // if (!labelIdList.includes(this.props.printRedu.currentItem.id)) {
-    //     let DecodeImage = new Promise((resolve, reject) => {
-    //         let filePath = LABEL_IMAGES_PATH + renameImage(this.props.printRedu.currentItem.name)
-    //         HoneyWell.decodeImage(filePath, (MSG) => {
-    //             console.log({MSG})
-    //             resolve()
-    //         })
-    //     })
-    //     DecodeImage
-    //         .then(() => {
-    //             let labelCheckObj = {id: this.props.printRedu.currentItem.id, labelCheckId: this.props.printRedu.counter}
-    //             this.props.pushLabelObj(labelCheckObj)
-    //         })
+    //check the image to make sure it's decode,
+    if (!labelCheckList.includes(this.props.printRedu.currentItem.id)) {
         
-    // }
-    // let labelCheckList = this.props.printRedu.labelCheckList
-    // console.log({labelCheckList})
+        // Promise is used in DecodeImage 
+        let DecodeImage = new Promise((resolve, reject) => {
+            let index = parseInt(this.props.printRedu.currentItem.id)
+            let filePath = LABEL_IMAGES_PATH + renameImage(this.props.printRedu.currentItem.name)
+            HoneyWell.decodeImage(filePath, index, (MSG) => {
+                console.log({MSG})
+                resolve()
+            })
+        })
+        // after decoding the image, labelID is pushed to labelCheckList.
+        DecodeImage
+            .then(() => {
+                this.props.pushLabelID(this.props.printRedu.currentItem.id)
+                console.log({id: this.props.printRedu.currentItem.id})
+            })
+        
+    }
   }
 
+  // responsive layout function 
   onLayoutChanged = () => {
+
     let deviceWidth = Dimensions.get("window").width
     console.log({deviceWidth})
     if (deviceWidth <= 800) {
@@ -104,9 +102,7 @@ class Print extends Component {
                         color={print_btn} 
                         amount={this.props.printRedu.printQuantity} 
                         isConnected={this.props.connection.isConnected}
-                        filePath={LABEL_IMAGES_PATH + renameImage(this.props.printRedu.currentItem.name)}
-                        id={this.props.printRedu.currentItem.id}
-                        labelCheckList={this.props.printRedu.labelCheckList}
+                        index={this.props.printRedu.currentItem.id}
                         resetPrintQuantity={this.props.resetPrintQuantity} />
                     {/* <GenerateBtn 
                         name={'Cancel'} 
@@ -153,7 +149,7 @@ mapActions = (dispatch) => {
         setPrintQuantity,
         resetPrintQuantity,
         reducePrintQuantity,
-        pushLabelObj
+        pushLabelID
     }, dispatch)
 }
 

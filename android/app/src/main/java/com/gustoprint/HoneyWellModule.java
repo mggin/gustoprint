@@ -100,7 +100,7 @@ public class HoneyWellModule extends ReactContextBaseJavaModule {
         //String path = Environment.getExternalStorageDirectory().getCanonicalPath();
         //String path = Environment.getExternalStorageDirectory().getAbsolutePath() + "/hello.jpg";
         bitHashMap.put(index, BitmapFactory.decodeFile(path));
-        cb.invoke(path);
+        cb.invoke(bitHashMap.toString());
     }
 
     @ReactMethod
@@ -110,28 +110,30 @@ public class HoneyWellModule extends ReactContextBaseJavaModule {
         //docDPL.writeImage(imageDataList.get(index), 200, 100, paramDPL);
         //String text = stringList.get(index);
         //docDPL.writeText("hello world", "00", 450, 100);
+        docDPL.setPrintQuantity(amount);
+        //Bitmap msg = (Bitmap)bitHashMap.get(index);
         docDPL.writeImage((Bitmap)bitHashMap.get(index), 0, 0,  paramDPL);
         printData = docDPL.getDocumentData();
         //docDPL.setPrintQuantity(amount);
         //conn.write(docDPL.getDocumentData())
-        conn.write(printData);
-        conn.close();
+        //conn.write(printData);
+        //cb.invoke(printData.length);
 
-//        int bytesWritten = 0;
-//        int bytesToWrite = 1024;
-//        int totalBytes = printData.length;
-//        int remainingBytes = totalBytes;
-//        while (bytesWritten < totalBytes)
-//        {
-//            if (remainingBytes < bytesToWrite)
-//                bytesToWrite = remainingBytes;
-//
-//            //Send data, 1024 bytes at a time until all data sent
-//            conn.write(printData, bytesWritten, bytesToWrite);
-//            bytesWritten += bytesToWrite;
-//            remainingBytes = remainingBytes - bytesToWrite;
-//            //Thread.sleep(100);
-//        }
+        int bytesWritten = 0;
+        int bytesToWrite = 4096;
+        int totalBytes = printData.length;
+        int remainingBytes = totalBytes;
+        while (bytesWritten < totalBytes)
+        {
+            if (remainingBytes < bytesToWrite)
+                bytesToWrite = remainingBytes;
+
+            //Send data, 1024 bytes at a time until all data sent
+            conn.write(printData, bytesWritten, bytesToWrite);
+            bytesWritten += bytesToWrite;
+            remainingBytes = remainingBytes - bytesToWrite;
+            Thread.sleep(100);
+        }
 
     }
 

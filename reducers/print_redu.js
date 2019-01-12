@@ -3,7 +3,7 @@ import {
     RESET_PRINT_QUANTITY,
     REDUCE_PRINT_QUANTITY,
     SET_CURRENT_ITEM,
-    PUSH_LABEL_INDEX
+    PUSH_LABEL_ID
 } from '../constants/action_type'
 const initState = { 
     printQuantity: '',
@@ -42,7 +42,7 @@ export default function(state = initState, action) {
                 ...state,
                 currentItem: action.itemObj
             }
-        case PUSH_LABEL_INDEX:
+        case PUSH_LABEL_ID:
             //console.log(action.labelObj)
             let labelCheckList = state.labelCheckList
             labelCheckList.push(action.labelID)
